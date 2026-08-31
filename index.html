@@ -1009,6 +1009,7 @@
         <input type="hidden" name="_subject" value="Nuevo contacto desde la web · Time 4 Profit">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://timeforprofitdaytrading-commits.github.io/time4profit/?enviado=1#contacto">
         <div class="form-grid">
           <div class="form-field">
             <label for="c-nombre">Nombre *</label>
@@ -1075,6 +1076,9 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
       </form>
+      <p id="formEnviadoAviso" style="display:none;margin-top:16px;padding:14px 18px;border-radius:10px;background:rgba(159,203,87,0.14);color:var(--green-dark);font-weight:600;font-size:14px;">
+        ✅ ¡Gracias! Tu solicitud se ha enviado correctamente, te contactaremos pronto.
+      </p>
     </div>
   </section>
 
@@ -1432,6 +1436,20 @@ function buildCandles(svgEl, opts){
       });
       console.log("Backend de noticias no disponible todavía:", err);
     });
+})();
+</script>
+
+<script>
+// Muestra el aviso de "formulario enviado" si venimos de vuelta de FormSubmit
+(function () {
+  if (window.location.search.includes("enviado=1")) {
+    var aviso = document.getElementById("formEnviadoAviso");
+    if (aviso) aviso.style.display = "block";
+    // Limpia el "?enviado=1" de la URL sin recargar la página
+    var url = new URL(window.location.href);
+    url.searchParams.delete("enviado");
+    window.history.replaceState({}, "", url.pathname + url.hash);
+  }
 })();
 </script>
 
