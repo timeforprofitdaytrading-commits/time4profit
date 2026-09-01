@@ -1,0 +1,51 @@
+<!--
+  CÓMO USAR ESTE SNIPPET
+  ======================
+  1. Despliega primero el backend (sigue el README.md de esta carpeta).
+  2. Sustituye API_URL más abajo por la URL real de tu Worker
+     (algo como: https://t4p-news-backend.tu-usuario.workers.dev/api/news).
+  3. Añade el atributo data-asset="EURUSD" (etc.) a cada .noticia-tile-head
+     en tu HTML principal, usando estos códigos exactos:
+       EURUSD, GBPUSD, SP500, NAS100, BTC, ETH, SOL, HYPE, XAU
+     Ejemplo:
+       <div class="noticia-tile-head" data-asset="EURUSD">EUR/USD</div>
+  4. Pega el bloque <script> de abajo justo antes de </body> en tu web.
+-->
+
+<style>
+  .hype-badge{
+    display:inline-flex;align-items:center;gap:4px;margin-left:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;
+    padding:2px 8px;border-radius:10px;vertical-align:middle;
+  }
+  .hype-badge.low{background:#eef3f7;color:#5b7086;}
+  .hype-badge.medium{background:rgba(82,174,225,0.14);color:#2e60a7;}
+  .hype-badge.high{background:rgba(159,203,87,0.16);color:#429346;}
+  .hype-badge.extreme{background:rgba(255,120,60,0.14);color:#c2410c;}
+</style>
+
+<script>
+(function () {
+  const API_URL = "https://t4p-news-backend.TU-USUARIO.workers.dev/api/news"; // ← cambia esto
+
+  fetch(API_URL)
+    .then((r) => r.json())
+    .then((data) => {
+      document.querySelectorAll(".noticia-tile-head[data-asset]").forEach((el) => {
+        const asset = el.getAttribute("data-asset");
+        const info = data[asset];
+        if (!info) return;
+
+        const badge = document.createElement("span");
+        badge.className = "hype-badge " + info.hypeLabel.toLowerCase();
+        badge.textContent = "HYPE " + info.hype;
+        el.appendChild(badge);
+      });
+    })
+    .catch((err) => {
+      // Si el backend no responde, la web sigue funcionando igual
+      // (las casillas de TradingView ya existentes no dependen de esto).
+      console.log("No se pudo cargar el HYPE en vivo:", err);
+    });
+})();
+</script>

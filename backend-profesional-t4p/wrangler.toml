@@ -1,0 +1,19 @@
+name = "t4p-news-backend"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# Se ejecuta cada 10 minutos: descarga noticias nuevas, las traduce y clasifica.
+[triggers]
+crons = ["*/10 * * * *"]
+
+# Base de datos D1 (se crea con: wrangler d1 create t4p-news-db)
+# Copia aquí el database_id que te dé ese comando.
+[[d1_databases]]
+binding = "DB"
+database_name = "t4p-news-db"
+database_id = "PON_AQUI_TU_DATABASE_ID"
+
+# Variables no secretas
+[vars]
+# Ventana de tiempo (en horas) que se considera "reciente" para calcular el HYPE
+HYPE_WINDOW_HOURS = "24"

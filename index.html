@@ -169,6 +169,7 @@
   /* ---------- signal signature section ---------- */
   .signal-section{background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
   .signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .signal-copy{margin-top:-44px;}
   @media (max-width:900px){.signal-grid{grid-template-columns:1fr;gap:40px;}}
   .signal-copy h2{font-size:clamp(26px,4vw,36px);font-weight:600;line-height:1.18;margin-bottom:18px;}
   .signal-copy p{color:var(--text-muted);font-size:16px;line-height:1.65;margin-bottom:14px;}
@@ -343,9 +344,40 @@
   .formacion-section{padding:90px 0;background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
   .formacion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;}
   @media (max-width:900px){.formacion-grid{grid-template-columns:1fr;}}
-  .formacion-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:12px;}
-  .formacion-card h3{font-size:18px;}
-  .formacion-card p{color:var(--text-muted);font-size:14px;line-height:1.5;}
+  .formacion-head{max-width:680px;}
+  .formacion-head .section-label{font-size:17px;letter-spacing:.02em;text-transform:none;display:flex;align-items:center;gap:8px;}
+  .formacion-label-icon{font-size:22px;line-height:1;}
+  .formacion-block{
+    position:relative;
+    border-radius:16px;padding:36px 26px;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;min-height:190px;gap:12px;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .formacion-num{
+    position:absolute;top:16px;left:20px;font-family:'IBM Plex Mono',monospace;
+    font-size:12px;font-weight:700;opacity:.5;letter-spacing:.05em;
+  }
+  .formacion-block:hover{transform:translateY(-3px);box-shadow:0 20px 40px -26px rgba(16,35,58,0.25);}
+  .formacion-icon{
+    width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,0.22);
+  }
+  .formacion-block h3{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:23px;}
+  .formacion-tag{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.02em;opacity:.85;}
+
+  .formacion-green{background:linear-gradient(155deg, var(--green-dark), var(--green-light));}
+  .formacion-green h3, .formacion-green .formacion-tag{color:#fff;}
+  .formacion-green .formacion-icon{color:#fff;}
+
+  .formacion-blue{background:linear-gradient(155deg, rgba(82,174,225,0.16), rgba(82,174,225,0.28));border:1px solid rgba(82,174,225,0.3);}
+  .formacion-blue h3{color:var(--blue-dark);}
+  .formacion-blue .formacion-tag{color:var(--blue-dark);opacity:.75;}
+  .formacion-blue .formacion-icon{background:rgba(82,174,225,0.25);color:var(--blue-dark);}
+
+  .formacion-lightgreen{background:linear-gradient(155deg, rgba(159,203,87,0.16), rgba(159,203,87,0.3));border:1px solid rgba(159,203,87,0.35);}
+  .formacion-lightgreen h3{color:var(--green-dark);}
+  .formacion-lightgreen .formacion-tag{color:var(--green-dark);opacity:.75;}
+  .formacion-lightgreen .formacion-icon{background:rgba(159,203,87,0.28);color:var(--green-dark);}
   .pdf-upload-btn{
     display:inline-flex;align-items:center;justify-content:center;gap:6px;
     padding:10px 16px;border:1.5px dashed var(--blue-light);border-radius:9px;
@@ -363,7 +395,29 @@
 
   /* ---------- noticias ---------- */
   .noticias-section{padding:90px 0;}
-  .noticias-note{margin-top:24px;font-size:14px;color:var(--text-muted);}
+  .noticias-head{max-width:680px;}
+  .noticias-head .section-label{font-size:17px;letter-spacing:.02em;text-transform:none;display:flex;align-items:center;gap:8px;}
+  .noticias-label-icon{font-size:22px;line-height:1;}
+  .redes-head{max-width:680px;}
+  .redes-head .section-label{font-size:17px;letter-spacing:.02em;text-transform:none;display:flex;align-items:center;gap:8px;}
+  .redes-label-icon{font-size:22px;line-height:1;}
+  .directos-head{max-width:680px;}
+  .directos-head .section-label{font-size:17px;letter-spacing:.02em;text-transform:none;display:flex;align-items:center;gap:8px;}
+  .directos-label-icon{font-size:22px;line-height:1;}
+  .testimonios-head{max-width:680px;}
+  .testimonios-head .section-label{font-size:17px;letter-spacing:.02em;text-transform:none;display:flex;align-items:center;gap:8px;}
+  .testimonios-label-icon{font-size:22px;line-height:1;}
+  .contacto-head{max-width:680px;}
+  .contacto-head .section-label{font-size:17px;letter-spacing:.02em;text-transform:none;display:flex;align-items:center;gap:8px;}
+  .contacto-label-icon{font-size:22px;line-height:1;}
+  .senal-label{font-size:17px;letter-spacing:.02em;text-transform:none;display:flex;align-items:center;gap:8px;}
+  .senal-label-icon{font-size:22px;line-height:1;}
+  .pilares-head{max-width:700px;}
+  .pilares-head .section-label{font-size:17px;letter-spacing:.02em;text-transform:none;display:flex;align-items:center;gap:8px;}
+  .pilares-label-icon{font-size:22px;line-height:1;}
+  .pilares-head h2{font-size:clamp(30px,4.4vw,44px);}
+  .quienes-head .section-label{font-size:17px;letter-spacing:.02em;text-transform:none;display:flex;align-items:center;gap:8px;}
+  .quienes-label-icon{font-size:22px;line-height:1;}
   .noticias-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px;}
   @media (max-width:1000px){.noticias-tiles{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:560px){.noticias-tiles{grid-template-columns:1fr;}}
@@ -610,17 +664,14 @@
   <!-- QUIÉNES SOMOS -->
   <section id="quienes-somos" class="quienes-section">
     <div class="wrap">
-      <div class="section-head">
-        <span class="section-label">Quiénes somos</span>
+      <div class="section-head quienes-head">
+        <span class="section-label"><span class="quienes-label-icon">👥</span> Quiénes somos</span>
         <h2>Nacimos con la idea de ayudar a más personas a construir una habilidad totalmente digital, con la que puedan crear su propia cobertura de vida.</h2>
       </div>
 
       <div class="quienes-intro">
         <p class="quienes-tagline">Dos traders. Una metodología. Una misma visión.</p>
-        <p>Somos David Pascual, fundador, y Nahuel Tajes, cofundador.</p>
-        <p>Contamos con más de 4 años de experiencia en los mercados de criptomonedas y divisas, y durante este tiempo nos hemos formado y trabajado con diferentes metodologías de trading.</p>
-        <p>A lo largo de nuestro recorrido, hemos estudiado tres modalidades diferentes, seleccionando de cada una de ellas los conceptos y herramientas que consideramos más útiles.</p>
-        <p>El resultado: nuestra propia estrategia y sistema de trabajo, combinando análisis, operativa, gestión del riesgo y psicotrading.</p>
+        <p>Somos David Pascual (fundador) y Nahuel Tajes (cofundador), con más de 4 años de experiencia en los mercados de criptomonedas y divisas. Hemos estudiado tres metodologías distintas y nos hemos quedado con lo mejor de cada una, para construir nuestro propio sistema de trabajo: análisis, operativa, gestión del riesgo y psicotrading.</p>
       </div>
 
       <div class="founders-grid">
@@ -663,8 +714,8 @@
   <!-- PILARES -->
   <section id="pilares">
     <div class="wrap">
-      <div class="section-head">
-        <span class="section-label">Qué encuentras dentro</span>
+      <div class="section-head pilares-head">
+        <span class="section-label"><span class="pilares-label-icon">🎯</span> Qué encuentras dentro</span>
         <h2>Todo lo que necesitas para operar con criterio, no con ruido.</h2>
         <p>Nada de promesas de rentabilidad garantizada. Formación estructurada, contexto de mercado en directo y disciplina de gestión de riesgo.</p>
       </div>
@@ -696,53 +747,60 @@
   <!-- FORMACIÓN: MATERIAL EN PDF -->
   <section id="formacion" class="formacion-section">
     <div class="wrap">
-      <div class="section-head">
-        <span class="section-label">Formación</span>
-        <h2>Material descargable: Smart Money, ICT y Order Flow.</h2>
-        <p>Aquí iremos colgando el contenido en PDF de cada bloque de formación, para que puedas repasarlo cuando quieras.</p>
+      <div class="section-head formacion-head">
+        <span class="section-label"><span class="formacion-label-icon">📚</span> Formación</span>
+        <h2>Los tres pilares sobre los que construimos tu forma de operar.</h2>
+        <p>De la teoría a la práctica: cada área se trabaja en directo, con ejemplos reales del mercado, no solo en diapositivas.</p>
       </div>
       <div class="formacion-grid">
-        <div class="formacion-card" data-cat="smc">
+        <div class="formacion-block formacion-green">
+          <span class="formacion-num">01</span>
+          <div class="formacion-icon">
+            <svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 34 L18 22 L26 28 L42 12"/>
+              <path d="M42 12 L42 20"/>
+              <path d="M42 12 L34 12"/>
+              <rect x="6" y="36" width="36" height="2" rx="1" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
           <h3>Smart Money Concepts</h3>
-          <p>Estructura de mercado, liquidez, order blocks y zonas de desequilibrio.</p>
-          <label class="pdf-upload-btn">
-            + Añadir PDF
-            <input type="file" accept="application/pdf" class="pdf-input" data-cat="smc">
-          </label>
-          <ul class="pdf-list" id="pdfList-smc"></ul>
+          <span class="formacion-tag">Estructura · Liquidez · Order Blocks</span>
         </div>
-        <div class="formacion-card" data-cat="ict">
+        <div class="formacion-block formacion-blue">
+          <span class="formacion-num">02</span>
+          <div class="formacion-icon">
+            <svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="24" cy="24" r="16"/>
+              <path d="M24 14 L24 24 L31 29"/>
+            </svg>
+          </div>
           <h3>ICT</h3>
-          <p>Kill zones, Judas Swing, fair value gaps y modelos de entrada ICT.</p>
-          <label class="pdf-upload-btn">
-            + Añadir PDF
-            <input type="file" accept="application/pdf" class="pdf-input" data-cat="ict">
-          </label>
-          <ul class="pdf-list" id="pdfList-ict"></ul>
+          <span class="formacion-tag">Kill Zones · Judas Swing · FVG</span>
         </div>
-        <div class="formacion-card" data-cat="orderflow">
+        <div class="formacion-block formacion-lightgreen">
+          <span class="formacion-num">03</span>
+          <div class="formacion-icon">
+            <svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="8" y="26" width="6" height="14"/>
+              <rect x="21" y="16" width="6" height="24"/>
+              <rect x="34" y="8" width="6" height="32"/>
+            </svg>
+          </div>
           <h3>Order Flow</h3>
-          <p>Lectura de flujo de órdenes, absorción, delta y volumen institucional.</p>
-          <label class="pdf-upload-btn">
-            + Añadir PDF
-            <input type="file" accept="application/pdf" class="pdf-input" data-cat="orderflow">
-          </label>
-          <ul class="pdf-list" id="pdfList-orderflow"></ul>
+          <span class="formacion-tag">Delta · Absorción · Volumen</span>
         </div>
       </div>
-      <p class="formacion-note">Nota: para que un PDF quede visible de forma permanente para toda la comunidad (no solo en tu navegador), tendrás que alojar el archivo (por ejemplo en Google Drive o Dropbox con enlace público) y añadir el link — la web por sí sola no puede guardar archivos de forma permanente sin un servidor detrás.</p>
     </div>
   </section>
 
   <!-- NOTICIAS -->
   <section id="noticias" class="noticias-section">
     <div class="wrap">
-      <div class="section-head">
-        <span class="section-label">Noticias del mercado</span>
-        <h2>Centro de noticias en tiempo real.</h2>
-        <p>Cobertura de EUR/USD, GBP/USD, S&P 500, Nasdaq 100, Bitcoin y Oro.</p>
+      <div class="section-head noticias-head">
+        <span class="section-label"><span class="noticias-label-icon">📰</span> Noticias del mercado</span>
+        <h2>El contexto que mueve tus operaciones, en tiempo real.</h2>
+        <p>Cobertura de EUR/USD, GBP/USD, S&P 500, Nasdaq 100, Bitcoin y Oro — cada noticia se extrae y clasifica automáticamente por activo, sin que tengas que buscarla tú.</p>
       </div>
-      <p class="noticias-note">Noticia fundamental de cada activo, extraída y actualizada automáticamente en tiempo real:</p>
             <div class="noticias-tiles">
         <div class="noticia-tile">
           <div class="noticia-tile-head" data-asset="EURUSD">EUR/USD</div>
@@ -789,7 +847,7 @@
     <div class="wrap">
       <div class="signal-grid">
         <div class="signal-copy">
-          <span class="section-label">Nuestra manera de dar señales</span>
+          <span class="section-label senal-label"><span class="senal-label-icon">📈</span> Nuestra manera de dar señales</span>
           <h2>Ves el setup antes de que el precio lo confirme.</h2>
           <p>Cuando el precio entra en zona y empieza a formarse una estructura válida, publicamos la idea con su justificación técnica: no un "compra ya" sin contexto, sino el porqué, la zona de entrada, el stop y el objetivo.</p>
           <div class="signal-list">
@@ -838,8 +896,8 @@
   <!-- HORARIOS -->
   <section id="directos">
     <div class="wrap">
-      <div class="section-head">
-        <span class="section-label">Agenda semanal</span>
+      <div class="section-head directos-head">
+        <span class="section-label"><span class="directos-label-icon">📅</span> Agenda semanal</span>
         <h2>Directos en las horas donde realmente se mueve el mercado.</h2>
         <p>De lunes a viernes, coordinados con las kill zones de Londres y Nueva York. Mismo horario todos los días de la semana.</p>
       </div>
@@ -920,8 +978,8 @@
   <!-- REDES -->
   <section id="redes">
     <div class="wrap">
-      <div class="section-head">
-        <span class="section-label">Elige tu canal</span>
+      <div class="section-head redes-head">
+        <span class="section-label"><span class="redes-label-icon">📲</span> Elige tu canal</span>
         <h2>Únete desde donde prefieras seguirnos.</h2>
         <p>Contenido, directos y señales distribuidos en las plataformas que ya usas.</p>
       </div>
@@ -963,8 +1021,8 @@
   <!-- TESTIMONIOS -->
   <section id="testimonios" class="testimonios-section">
     <div class="wrap">
-      <div class="section-head">
-        <span class="section-label">Lo que dice la comunidad</span>
+      <div class="section-head testimonios-head">
+        <span class="section-label"><span class="testimonios-label-icon">💬</span> Lo que dice la comunidad</span>
         <h2>Personas reales, resultados reales.</h2>
         <p>Miembros de Time 4 Profit que han pasado por nuestras sesiones en vivo y han seguido los setups de señales.</p>
       </div>
@@ -1000,8 +1058,8 @@
   <!-- CONTACTO -->
   <section id="contacto" class="contacto-section">
     <div class="wrap">
-      <div class="section-head">
-        <span class="section-label">Contacto</span>
+      <div class="section-head contacto-head">
+        <span class="section-label"><span class="contacto-label-icon">✉️</span> Contacto</span>
         <h2>¿Quieres unirte? Cuéntanos un poco sobre ti.</h2>
         <p>Rellena el formulario y nos pondremos en contacto contigo lo antes posible.</p>
       </div>
@@ -1079,6 +1137,17 @@
       <p id="formEnviadoAviso" style="display:none;margin-top:16px;padding:14px 18px;border-radius:10px;background:rgba(159,203,87,0.14);color:var(--green-dark);font-weight:600;font-size:14px;">
         ✅ ¡Gracias! Tu solicitud se ha enviado correctamente, te contactaremos pronto.
       </p>
+      <div id="formFalloAviso" style="display:none;margin-top:16px;padding:18px 20px;border-radius:10px;background:rgba(255,177,27,0.14);border:1px solid rgba(255,177,27,0.35);">
+        <p style="color:#a3690a;font-weight:600;font-size:14px;margin-bottom:10px;">
+          ⚠️ El formulario está tardando más de lo normal — puede ser un fallo de conexión temporal.
+        </p>
+        <p style="color:var(--text-muted);font-size:13.5px;margin-bottom:14px;">
+          No te quedes sin contactarnos: escríbenos directamente y te respondemos igual.
+        </p>
+        <a href="https://chat.whatsapp.com/HBHD0J1wgN799ezB8h7Qbq" target="_blank" rel="noopener" class="btn-primary" style="background:#25D366;">
+          Escribir por WhatsApp
+        </a>
+      </div>
     </div>
   </section>
 
@@ -1212,24 +1281,6 @@ const SIGNALS_LOG = [];
     btn.classList.toggle('open');
   });
 })();
-
-// Formación: al elegir un PDF, se añade a la lista de su categoría con un enlace de vista previa local.
-// Nota: esto solo funciona en tu propio navegador durante la sesión; para que el PDF sea visible
-// de forma permanente para toda la comunidad hace falta alojarlo (Google Drive, Dropbox, etc.).
-document.querySelectorAll('.pdf-input').forEach(function(input){
-  input.addEventListener('change', function(){
-    var file = input.files && input.files[0];
-    if(!file) return;
-    var cat = input.getAttribute('data-cat');
-    var list = document.getElementById('pdfList-' + cat);
-    if(!list) return;
-    var url = URL.createObjectURL(file);
-    var li = document.createElement('li');
-    li.innerHTML = '📄 <a href="' + url + '" target="_blank" rel="noopener">' + file.name + '</a>';
-    list.appendChild(li);
-    input.value = '';
-  });
-});
 
 // Menú hamburguesa: abre/cierra el submenú y navega a cada sección
 (function(){
@@ -1450,6 +1501,22 @@ function buildCandles(svgEl, opts){
     url.searchParams.delete("enviado");
     window.history.replaceState({}, "", url.pathname + url.hash);
   }
+})();
+
+// Si el formulario tarda mucho en responder (posible bloqueo temporal de red),
+// mostramos un aviso con el WhatsApp como vía alternativa, para no perder el contacto.
+(function () {
+  var form = document.querySelector(".contact-form");
+  var falloAviso = document.getElementById("formFalloAviso");
+  if (!form || !falloAviso) return;
+
+  form.addEventListener("submit", function () {
+    setTimeout(function () {
+      // Si tras 8 segundos seguimos en la misma página (el envío no ha redirigido todavía),
+      // mostramos el aviso de respaldo sin bloquear el envío en curso.
+      falloAviso.style.display = "block";
+    }, 8000);
+  });
 })();
 </script>
 
