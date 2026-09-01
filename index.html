@@ -600,6 +600,10 @@
   footer .disclaimer{font-size:12px;color:var(--text-faint);max-width:640px;line-height:1.6;margin-top:18px;}
   .footer-bottom-bar{margin-top:32px;padding:18px 0;border-top:1px solid var(--border);background:var(--bg-2);}
   .footer-bottom-bar .copy{font-size:12.5px;color:var(--text-faint);text-align:center;}
+  .visit-counter{
+    display:flex;align-items:center;justify-content:center;gap:6px;margin-top:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--text-faint);
+  }
 
   @media (prefers-reduced-motion: reduce){*:not(.ticker-inner){animation:none !important;transition:none !important;}}
 </style>
@@ -1194,6 +1198,10 @@
     <p class="disclaimer">Operar en Forex y criptomonedas conlleva un alto riesgo y puede no ser adecuado para todos los inversores. El contenido de Time 4 Profit es educativo e informativo, no constituye asesoramiento financiero, y ningún resultado pasado garantiza resultados futuros. Opera siempre con capital que puedas permitirte perder.</p>
     <div class="footer-bottom-bar">
       <div class="copy">© 2026 Time 4 Profit. Todos los derechos reservados.</div>
+      <div class="visit-counter" id="visitCounter" style="display:none;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span id="visitCounterNum">…</span> visitas
+      </div>
     </div>
   </div>
 </footer>
@@ -1550,6 +1558,27 @@ function buildCandles(svgEl, opts){
       falloAviso.style.display = "block";
     }, 8000);
   });
+})();
+</script>
+
+<script>
+// Contador de visitas: usa CountAPI (servicio externo gratuito, sin necesidad de backend propio).
+// Si el servicio falla por cualquier motivo, el contador simplemente se queda oculto,
+// sin afectar al resto de la web.
+(function () {
+  fetch("https://api.countapi.xyz/hit/time4profit-web/visitas")
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var num = document.getElementById("visitCounterNum");
+      var wrap = document.getElementById("visitCounter");
+      if (num && wrap && typeof data.value === "number") {
+        num.textContent = data.value.toLocaleString("es-ES");
+        wrap.style.display = "flex";
+      }
+    })
+    .catch(function () {
+      // Silencioso: si falla, el contador simplemente no se muestra.
+    });
 })();
 </script>
 
