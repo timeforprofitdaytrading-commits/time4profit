@@ -421,12 +421,27 @@
   .noticias-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px;}
   @media (max-width:1000px){.noticias-tiles{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:560px){.noticias-tiles{grid-template-columns:1fr;}}
-  .noticia-tile{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  .noticia-tile{
+    background:#fff;border:2px solid rgba(16,35,58,0.22);border-radius:14px;overflow:hidden;
+    box-shadow:0 4px 16px -8px rgba(16,35,58,0.12);
+    transition:transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .noticia-tile:hover{transform:translateY(-2px);box-shadow:0 18px 36px -20px rgba(16,35,58,0.3);border-color:rgba(82,174,225,0.6);}
   .noticia-tile-head{
     font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14.5px;
-    padding:14px 16px;border-bottom:1px solid var(--border);background:var(--bg-2);
-    display:flex;align-items:center;flex-wrap:wrap;gap:8px;
+    padding:14px 16px;border-bottom:2px solid rgba(16,35,58,0.16);background:var(--bg-2);
+    display:flex;align-items:center;flex-wrap:wrap;gap:10px;
   }
+  .noticia-icon{
+    width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+    font-size:14px;font-weight:700;flex-shrink:0;
+  }
+  .ic-eurusd{background:rgba(82,174,225,0.18);color:var(--blue-dark);}
+  .ic-gbpusd{background:rgba(159,203,87,0.2);color:var(--green-dark);}
+  .ic-sp500{background:rgba(255,177,27,0.18);color:#a3690a;}
+  .ic-nas100{background:rgba(82,174,225,0.18);color:var(--blue-dark);}
+  .ic-btc{background:rgba(255,150,50,0.2);color:#c2410c;}
+  .ic-xau{background:rgba(255,199,64,0.25);color:#8a6403;}
   .hype-badge{
     display:inline-flex;align-items:center;gap:4px;
     font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;
@@ -437,11 +452,15 @@
   .hype-badge.high{background:rgba(159,203,87,0.16);color:var(--green-dark);}
   .hype-badge.extreme{background:rgba(255,120,60,0.14);color:#c2410c;}
 
-  .noticia-tile-list{padding:14px 16px;min-height:260px;}
-  .noticia-tile-loading, .noticia-tile-empty{font-size:13px;color:var(--text-faint);}
-  .noticia-item{padding:11px 0;border-bottom:1px solid var(--border);}
+  .noticia-tile-list{padding:6px 16px 14px;min-height:260px;}
+  .noticia-tile-loading, .noticia-tile-empty{font-size:13px;color:var(--text-faint);padding-top:10px;display:block;}
+  .noticia-item{padding:13px 0;border-bottom:1.5px solid rgba(16,35,58,0.14);position:relative;padding-left:14px;}
+  .noticia-item::before{
+    content:"";position:absolute;left:0;top:17px;width:6px;height:6px;border-radius:50%;
+    background:var(--blue-light);
+  }
   .noticia-item:last-child{border-bottom:none;}
-  .noticia-item-title{font-size:13.5px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:5px;}
+  .noticia-item-title{font-size:13.5px;font-weight:600;color:var(--text);line-height:1.45;margin-bottom:6px;}
   .noticia-item-meta{
     display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;
     font-size:11px;color:var(--text-faint);flex-wrap:wrap;
@@ -803,37 +822,37 @@
       </div>
             <div class="noticias-tiles">
         <div class="noticia-tile">
-          <div class="noticia-tile-head" data-asset="EURUSD">EUR/USD</div>
+          <div class="noticia-tile-head" data-asset="EURUSD"><span class="noticia-icon ic-eurusd">€</span> EUR/USD</div>
           <div class="noticia-tile-list" id="newsList-EURUSD">
             <p class="noticia-tile-loading">Cargando noticias…</p>
           </div>
         </div>
         <div class="noticia-tile">
-          <div class="noticia-tile-head" data-asset="GBPUSD">GBP/USD</div>
+          <div class="noticia-tile-head" data-asset="GBPUSD"><span class="noticia-icon ic-gbpusd">£</span> GBP/USD</div>
           <div class="noticia-tile-list" id="newsList-GBPUSD">
             <p class="noticia-tile-loading">Cargando noticias…</p>
           </div>
         </div>
         <div class="noticia-tile">
-          <div class="noticia-tile-head" data-asset="SP500">S&amp;P 500</div>
+          <div class="noticia-tile-head" data-asset="SP500"><span class="noticia-icon ic-sp500"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 L9 11 L13 15 L21 6"/><path d="M21 6 L21 11"/><path d="M21 6 L16 6"/></svg></span> S&amp;P 500</div>
           <div class="noticia-tile-list" id="newsList-SP500">
             <p class="noticia-tile-loading">Cargando noticias…</p>
           </div>
         </div>
         <div class="noticia-tile">
-          <div class="noticia-tile-head" data-asset="NAS100">Nasdaq 100</div>
+          <div class="noticia-tile-head" data-asset="NAS100"><span class="noticia-icon ic-nas100"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="13" width="3" height="7"/><rect x="10.5" y="9" width="3" height="11"/><rect x="17" y="4" width="3" height="16"/></svg></span> Nasdaq 100</div>
           <div class="noticia-tile-list" id="newsList-NAS100">
             <p class="noticia-tile-loading">Cargando noticias…</p>
           </div>
         </div>
         <div class="noticia-tile">
-          <div class="noticia-tile-head" data-asset="BTC">Bitcoin</div>
+          <div class="noticia-tile-head" data-asset="BTC"><span class="noticia-icon ic-btc">₿</span> Bitcoin</div>
           <div class="noticia-tile-list" id="newsList-BTC">
             <p class="noticia-tile-loading">Cargando noticias…</p>
           </div>
         </div>
         <div class="noticia-tile">
-          <div class="noticia-tile-head" data-asset="XAU">Oro (XAU/USD)</div>
+          <div class="noticia-tile-head" data-asset="XAU"><span class="noticia-icon ic-xau"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8.5"/><path d="M12 8 L12 16 M9.5 10 h5 M9.5 14 h5" stroke-linecap="round"/></svg></span> Oro (XAU/USD)</div>
           <div class="noticia-tile-list" id="newsList-XAU">
             <p class="noticia-tile-loading">Cargando noticias…</p>
           </div>
