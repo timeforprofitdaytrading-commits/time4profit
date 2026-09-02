@@ -114,10 +114,12 @@
     display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;
     font-size:12.5px;color:var(--blue-dark);background:rgba(82,174,225,0.1);
     border:1px solid rgba(82,174,225,0.35);padding:6px 12px;border-radius:100px;
-    margin-bottom:26px;letter-spacing:.02em;
+    letter-spacing:.02em;
   }
   .eyebrow .blip{width:6px;height:6px;border-radius:50%;background:var(--green-dark);animation:pulse-dot 2.2s ease-in-out infinite;}
   @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+  .hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px;}
+  .hero-visit-counter{color:var(--green-dark);background:rgba(159,203,87,0.12);border-color:rgba(159,203,87,0.4);}
   .hero h1{font-size:clamp(38px,6vw,62px);line-height:1.04;font-weight:700;}
   .hero h1 em{font-style:normal;background:var(--blue-grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
   .hero p.sub{margin-top:22px;font-size:18px;line-height:1.6;color:var(--text-muted);max-width:560px;}
@@ -600,10 +602,25 @@
   footer .disclaimer{font-size:12px;color:var(--text-faint);max-width:640px;line-height:1.6;margin-top:18px;}
   .footer-bottom-bar{margin-top:32px;padding:18px 0;border-top:1px solid var(--border);background:var(--bg-2);}
   .footer-bottom-bar .copy{font-size:12.5px;color:var(--text-faint);text-align:center;}
-  .visit-counter{
-    display:flex;align-items:center;justify-content:center;gap:6px;margin-top:8px;
-    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--text-faint);
+
+  .nav-visit-counter{
+    display:flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;
+    font-size:12px;font-weight:600;color:var(--green-dark);background:rgba(159,203,87,0.12);
+    border:1px solid rgba(159,203,87,0.4);padding:6px 12px;border-radius:100px;white-space:nowrap;
   }
+  @media (max-width:760px){.nav-visit-counter{display:none !important;}}
+
+  #formToast{
+    position:fixed;left:50%;bottom:28px;z-index:9999;max-width:min(90vw,380px);
+    background:#fff;border:1.5px solid rgba(159,203,87,0.5);border-radius:14px;
+    padding:16px 20px;box-shadow:0 20px 45px -20px rgba(16,35,58,0.35);
+    color:var(--text);font-size:14px;line-height:1.5;text-align:center;
+    transform:translate(-50%, 20px);opacity:0;
+    transition:transform .35s ease, opacity .35s ease;
+    pointer-events:none;
+  }
+  #formToast.show{transform:translate(-50%, 0);opacity:1;}
+  #formToast strong{color:var(--green-dark);}
 
   @media (prefers-reduced-motion: reduce){*:not(.ticker-inner){animation:none !important;transition:none !important;}}
 </style>
@@ -631,6 +648,10 @@
       <a href="https://www.tiktok.com/@timeforprofitdayt?_r=1&_t=ZN-98oatY3bk7a" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
         <svg viewBox="0 0 48 48"><rect width="48" height="48" rx="12" fill="#000"/><path fill="#fff" d="M28.5 12v14.6a4.6 4.6 0 11-4.6-4.6c.3 0 .6 0 .9.1v3.1a1.6 1.6 0 101.5 1.6V12h2.2zm3.4 3.1a4.8 4.8 0 002.7 1.4v3.1a7.9 7.9 0 01-4.4-1.5v3.5h-2.2V12h2.2c.1 1.2.7 2.2 1.7 3.1z"/></svg>
       </a>
+    </div>
+    <div class="nav-visit-counter" id="visitCounterHeader" style="display:none;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+      <span id="visitCounterHeaderNum">…</span> visitas
     </div>
     <div class="nav-menu-wrap">
       <button class="nav-burger" id="navBurgerBtn" aria-label="Abrir menú" aria-expanded="false">
@@ -1171,9 +1192,6 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
       </form>
-      <p id="formEnviadoAviso" style="display:none;margin-top:16px;padding:14px 18px;border-radius:10px;background:rgba(159,203,87,0.14);color:var(--green-dark);font-weight:600;font-size:14px;">
-        ✅ ¡Gracias! Tu solicitud se ha enviado correctamente, te contactaremos pronto.
-      </p>
       <div id="formFalloAviso" style="display:none;margin-top:16px;padding:18px 20px;border-radius:10px;background:rgba(255,177,27,0.14);border:1px solid rgba(255,177,27,0.35);">
         <p style="color:#a3690a;font-weight:600;font-size:14px;margin-bottom:10px;">
           ⚠️ El formulario está tardando más de lo normal — puede ser un fallo de conexión temporal.
@@ -1198,10 +1216,6 @@
     <p class="disclaimer">Operar en Forex y criptomonedas conlleva un alto riesgo y puede no ser adecuado para todos los inversores. El contenido de Time 4 Profit es educativo e informativo, no constituye asesoramiento financiero, y ningún resultado pasado garantiza resultados futuros. Opera siempre con capital que puedas permitirte perder.</p>
     <div class="footer-bottom-bar">
       <div class="copy">© 2026 Time 4 Profit. Todos los derechos reservados.</div>
-      <div class="visit-counter" id="visitCounter" style="display:none;">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
-        <span id="visitCounterNum">…</span> visitas
-      </div>
     </div>
   </div>
 </footer>
@@ -1532,11 +1546,25 @@ function buildCandles(svgEl, opts){
 </script>
 
 <script>
-// Muestra el aviso de "formulario enviado" si venimos de vuelta de FormSubmit
+// Toast de "formulario enviado" si venimos de vuelta de FormSubmit: aparece flotante
+// con una animación suave y desaparece solo a los pocos segundos.
 (function () {
   if (window.location.search.includes("enviado=1")) {
-    var aviso = document.getElementById("formEnviadoAviso");
-    if (aviso) aviso.style.display = "block";
+    var toast = document.createElement("div");
+    toast.id = "formToast";
+    toast.innerHTML = "🎉 <strong>¡Gracias por dar el paso!</strong><br>Este es el primer paso hacia tu futuro como trader. Te contactaremos muy pronto.";
+    document.body.appendChild(toast);
+
+    // Forzamos un reflow antes de añadir la clase, para que la animación de entrada se dispare bien
+    requestAnimationFrame(function () {
+      toast.classList.add("show");
+    });
+
+    setTimeout(function () {
+      toast.classList.remove("show");
+      setTimeout(function () { toast.remove(); }, 500);
+    }, 4000);
+
     // Limpia el "?enviado=1" de la URL sin recargar la página
     var url = new URL(window.location.href);
     url.searchParams.delete("enviado");
@@ -1562,17 +1590,20 @@ function buildCandles(svgEl, opts){
 </script>
 
 <script>
-// Contador de visitas: usa CountAPI (servicio externo gratuito, sin necesidad de backend propio).
-// Si el servicio falla por cualquier motivo, el contador simplemente se queda oculto,
+// Contador de visitas: consulta tu propio backend (mismo Cloudflare Worker de las noticias).
+// Si por cualquier motivo no responde, el contador simplemente se queda oculto,
 // sin afectar al resto de la web.
 (function () {
   fetch("https://t4p-news-backend.time4profit.workers.dev/api/visit")
     .then(function (r) { return r.json(); })
     .then(function (data) {
-      var num = document.getElementById("visitCounterNum");
-      var wrap = document.getElementById("visitCounter");
-      if (num && wrap && typeof data.value === "number") {
-        num.textContent = data.value.toLocaleString("es-ES");
+      if (typeof data.value !== "number") return;
+      var formatted = data.value.toLocaleString("es-ES");
+
+      var num = document.getElementById("visitCounterHeaderNum");
+      var wrap = document.getElementById("visitCounterHeader");
+      if (num && wrap) {
+        num.textContent = formatted;
         wrap.style.display = "flex";
       }
     })
