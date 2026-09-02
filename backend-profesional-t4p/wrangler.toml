@@ -11,7 +11,7 @@ crons = ["*/10 * * * *"]
 [[d1_databases]]
 binding = "DB"
 database_name = "t4p-news-db"
-database_id = "PON_AQUI_TU_DATABASE_ID"
+database_id = "0384d4b3-000f-4809-9692-c15591d0405c"
 
 # Variables no secretas
 [vars]
