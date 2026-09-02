@@ -611,16 +611,17 @@
   @media (max-width:760px){.nav-visit-counter{display:none !important;}}
 
   #formToast{
-    position:fixed;left:50%;bottom:28px;z-index:9999;max-width:min(90vw,380px);
-    background:#fff;border:1.5px solid rgba(159,203,87,0.5);border-radius:14px;
-    padding:16px 20px;box-shadow:0 20px 45px -20px rgba(16,35,58,0.35);
-    color:var(--text);font-size:14px;line-height:1.5;text-align:center;
-    transform:translate(-50%, 20px);opacity:0;
-    transition:transform .35s ease, opacity .35s ease;
+    position:fixed;left:50%;top:50%;z-index:9999;max-width:min(90vw,400px);
+    background:#fff;border:2px solid rgba(159,203,87,0.55);border-radius:18px;
+    padding:26px 28px;box-shadow:0 30px 70px -20px rgba(16,35,58,0.45);
+    color:var(--text);font-size:15px;line-height:1.55;text-align:center;
+    transform:translate(-50%, -50%) scale(0.92);opacity:0;
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1), opacity .3s ease;
     pointer-events:none;
   }
-  #formToast.show{transform:translate(-50%, 0);opacity:1;}
-  #formToast strong{color:var(--green-dark);}
+  #formToast.show{transform:translate(-50%, -50%) scale(1);opacity:1;}
+  #formToast strong{color:var(--green-dark);font-size:17px;}
+  #formToast .toast-icon{font-size:34px;display:block;margin-bottom:8px;}
 
   @media (prefers-reduced-motion: reduce){*:not(.ticker-inner){animation:none !important;transition:none !important;}}
 </style>
@@ -1552,7 +1553,7 @@ function buildCandles(svgEl, opts){
   if (window.location.search.includes("enviado=1")) {
     var toast = document.createElement("div");
     toast.id = "formToast";
-    toast.innerHTML = "🎉 <strong>¡Gracias por dar el paso!</strong><br>Este es el primer paso hacia tu futuro como trader. Te contactaremos muy pronto.";
+    toast.innerHTML = "<span class=\"toast-icon\">🎉</span><strong>¡Gracias por dar el paso!</strong><br>Este es el primer paso hacia tu futuro como trader. Te contactaremos muy pronto.";
     document.body.appendChild(toast);
 
     // Forzamos un reflow antes de añadir la clase, para que la animación de entrada se dispare bien
