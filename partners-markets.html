@@ -56,7 +56,122 @@
   .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
 
   @media (max-width:700px){
-    .wrap{padding:0 20px;}
+    .wrap{padding:0 18px;}
+  }
+
+  /* ==================================================
+     AJUSTES MÓVIL — pantallas hasta 560px
+     ================================================== */
+  @media (max-width:560px){
+    body{font-size:15px;}
+
+    /* cabecera / crumb */
+    .crumb{padding:18px 0 0;}
+    .crumb-inner{font-size:12.5px; gap:6px; flex-wrap:wrap;}
+    .t4p-mark{width:22px; height:22px; font-size:11px;}
+
+    /* hero */
+    .hero{padding:32px 0 36px; gap:28px;}
+    .markets-badge{font-size:12px; padding:6px 12px 6px 8px; margin-bottom:18px;}
+    .hero h1{font-size:28px; margin-bottom:16px; line-height:1.14;}
+    .hero p.lede{font-size:15.5px; margin-bottom:22px;}
+    .cta-row{gap:12px; margin-bottom:22px;}
+    .btn-primary{width:100%; text-align:center; padding:15px 20px; font-size:14.5px;}
+    .cta-note{font-size:12.5px;}
+    .ticker{gap:7px;}
+    .ticker span{font-size:11.5px; padding:6px 9px;}
+    .glow-card{padding:18px; border-radius:18px;}
+    .glow-top .sym{font-size:16px;}
+    .glow-top .price{font-size:21px;}
+    .chart-svg{margin:4px 0 14px;}
+    .glow-foot{font-size:11px; flex-direction:column; gap:6px; align-items:flex-start;}
+
+    /* secciones en general */
+    section{padding:44px 0;}
+    .section-head{margin-bottom:26px;}
+    .section-head h2{font-size:22px; line-height:1.22;}
+    .section-head p{font-size:14.5px; margin-top:10px;}
+    .kicker{font-size:12px; margin-bottom:8px;}
+
+    /* problema */
+    .problem{gap:26px;}
+    .problem h2{font-size:23px; margin-bottom:12px;}
+    .problem p{font-size:14.5px; margin-bottom:16px;}
+    .example-box{padding:16px 16px;}
+    .example-box p{font-size:14px;}
+
+    /* features */
+    .feature{padding:22px 18px;}
+    .feature .icon{width:32px; height:32px; margin-bottom:14px;}
+    .feature h3{font-size:16px;}
+    .feature p{font-size:13.5px;}
+
+    /* comparativa: tabla ancha -> tarjetas apiladas legibles */
+    .compare-row{grid-template-columns:1fr; gap:2px;}
+    .compare-row.head{display:none;}
+    .compare-row:not(.head){
+      display:block; border-top:1px solid var(--border); padding:14px 16px;
+    }
+    .compare-row:not(.head) .feat{
+      font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;
+      color:var(--text-low); font-family:'IBM Plex Mono'; margin-bottom:6px;
+    }
+    .compare-row:not(.head) .col-m{
+      font-size:14.5px; display:block; margin-bottom:4px;
+    }
+    .compare-row:not(.head) .col-m::before{content:"✅ Markets — "; color:var(--mint); font-family:'IBM Plex Mono'; font-size:11px;}
+    .compare-row:not(.head) .col-b{
+      font-size:13px; display:block; opacity:0.85;
+    }
+    .compare-row:not(.head) .col-b::before{content:"Broker CFD — "; font-family:'IBM Plex Mono'; font-size:11px;}
+
+    /* confianza / stats */
+    .trust-card{padding:18px;}
+    .trust-card h3{font-size:17px;}
+    .stats-strip > div{padding:20px 18px;}
+    .stats-strip .num{font-size:26px;}
+
+    /* social */
+    .social h2{font-size:22px;}
+    .social ul{margin-top:16px;}
+    .social li{font-size:14px; padding:9px 0;}
+    .leaderboard{padding:16px;}
+    .lb-name{font-size:13.5px;}
+    .lb-followers{font-size:11px;}
+    .lb-pnl{font-size:13px;}
+
+    /* partner program */
+    .earn-cell{padding:20px 16px;}
+    .earn-cell .big{font-size:28px; margin-bottom:10px;}
+    .earn-cell h3{font-size:14px;}
+    .earn-cell p{font-size:12.5px;}
+    .weekend-note{padding:14px 16px; font-size:13.5px; gap:10px;}
+
+    /* milestones: scroll horizontal suave con indicación visual */
+    .milestone-wrap{margin-top:36px;}
+    .milestone-bars{height:130px; gap:6px;}
+    .mbar{min-width:26px;}
+    .milestone-labels span{min-width:26px; font-size:9px;}
+
+    /* FAQ */
+    details summary{font-size:15px; padding:16px 2px;}
+    details .faq-body{font-size:14px; padding:0 2px 18px;}
+
+    /* CTA final */
+    .final-cta{padding:28px 20px; border-radius:20px; gap:20px;}
+    .final-cta h2{font-size:22px;}
+    .final-cta p{font-size:14px;}
+    .final-cta .cta-side .btn-primary{width:100%; text-align:center;}
+    .final-cta .tags{font-size:11px;}
+
+    footer{padding:28px 0 40px; font-size:12px;}
+  }
+
+  /* pequeños ajustes extra para pantallas muy estrechas (<380px) */
+  @media (max-width:380px){
+    .hero h1{font-size:25px;}
+    .ticker span{font-size:10.5px; padding:5px 8px;}
+    .earn-grid, .p-highlights{grid-template-columns:1fr 1fr;}
   }
 
   /* ---------- crumb ---------- */
